@@ -1,0 +1,15 @@
+#collector-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+
+}
+
+.layout {
+  flex: 1;
+}
+.ant-notification-notice {
+  border-radius: 8px !important;
+}

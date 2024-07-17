@@ -1,0 +1,2330 @@
+:root {
+  --primary: #6610F5 !important;
+  --orange-20: #669F9;
+  --white: #fff;
+  --grey: #F6F6F6;
+  --peach: #6610f51a;
+  --peach-10: #FF7643;
+  --red: #F84343;
+  /*user statuses*/
+  --green-20: rgba(64, 220, 117, 0.2);
+  --text-green: #40DC75;
+  --text-orange: #FFA41D;
+  --pink: rgba(255, 0, 0, 0.2);
+  --text-pink: #FE346E;
+  /*user statuses end*/
+  --box-shadow-default: 0px 4px 20px rgba(0, 0, 0, 0.04);
+  --box-shadow-modern: -10px 10px 30px rgba(255, 118, 67, 0.24);
+}
+
+
+/* override bootstrap styles */
+.btn-primary, .btn-primary:focus, .btn-primary:hover {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 3px var(--primary) !important;
+}
+
+
+.buyers .status {
+  color: #fff;
+  background: #3fa9f5;
+  width: 200px;
+  line-height: 1;
+}
+
+.buyers .status.status-4 {
+  color: #fff;
+  background-color: #7ac943;
+}
+
+.buyers .status.status-8, .buyers .status.status-9 {
+  color: #fff;
+  background-color: #ff4646;
+}
+
+.buyers hr {
+  margin: 1.5rem 0;
+}
+
+.buyers hr.thin {
+  height: 1px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.buyers .lead {
+  font-weight: bold;
+}
+
+.buyers .lead:after {
+  margin: 1.5rem 0;
+  content: "";
+  height: 8px;
+  background: #FF7643;
+  width: 44px;
+  display: block;
+}
+
+.buyers.list .dataTables_wrapper .dataTable {
+  margin-top: 2rem;
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr {
+  background-image: url(/images/icons/icon_arrow_grey_circle.svg);
+  background-repeat: no-repeat;
+  background-size: 24px auto;
+  background-position: right center;
+  cursor: pointer;
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr:hover {
+  background-image: url(/images/icons/icon_arrow_green_circle.svg);
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr td {
+  font-size: 0.875rem;
+  padding: 22px 8px;
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr td .icon-status {
+  width: 16px;
+  height: 16px;
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr td .updated {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr td .passport {
+  color: rgba(255, 70, 70, 0.6);
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr td .updated {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr td .phone {
+  font-weight: 600;
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr td .debt {
+  color: #FF7643;
+}
+
+.buyers.list .dataTables_wrapper .dataTable tbody tr td .debt.red {
+  color: #ff4646;
+}
+
+.buyers.show .center-body {
+  padding-top: 1.5rem;
+}
+
+.buyers.show .center-body .dropdown .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.25rem;
+  border: none;
+  width: 100%;
+  max-width: 230px;
+  text-align: left;
+  padding: 0.25rem 1rem;
+  min-width: 200px;
+}
+
+.buyers.show .center-body .dropdown .dropdown-toggle:after {
+  display: block;
+  height: 14px;
+  width: 14px;
+  border: 0;
+  background: url(/images/icons/icon_arrow_down_white_circle.svg) center center no-repeat;
+  background-size: contain;
+}
+
+.buyers.show .center-body .top {
+  display: flex;
+}
+
+.buyers.show .center-body .top .buttons {
+  width: 100%;
+  text-align: right;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  margin-left: 1.5rem;
+  padding-bottom: .5rem;
+}
+
+.buyers.show .center-body .top .buttons .edit {
+  background: url("/images/icons/icon_edit_blue.svg") center left no-repeat;
+  padding-left: 1.5rem;
+}
+
+.buyers.show .center-body .main-info {
+  display: flex;
+  padding: 2rem 2rem 3rem 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
+  margin: 0 -2rem;
+  z-index: 2;
+  position: relative;
+}
+
+.buyers.show .center-body .main-info .preview {
+  flex: none;
+  height: 140px;
+  width: 100%;
+  max-width: 140px;
+  margin-right: 1rem;
+  display: block;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 0.5rem;
+}
+
+.buyers.show .center-body .main-info .preview.dummy {
+  background-image: url(/images/icons/icon_user_grey_square.svg);
+}
+
+.buyers.show .center-body .main-info > div {
+  flex: 1;
+}
+
+.buyers.show .center-body .main-info .id {
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 0.25rem;
+}
+
+.buyers.show .center-body .main-info .name {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.buyers.show .center-body .main-info .phone {
+  padding-left: 24px;
+  background: url("/images/icons/icon_call_green_circle.svg") no-repeat center left;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.buyers.show .center-body .main-info .settings {
+  display: flex;
+  border: 2px solid #FF7643;
+  border-radius: 10px;
+  padding: .5rem;
+  justify-content: space-between;
+}
+
+.buyers.show .center-body .main-info .settings .part {
+  line-height: 20px;
+  border-left: 1px solid #FF7643;
+  padding-left: 1rem;
+}
+
+.buyers.show .center-body .main-info .settings .part:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.buyers.show .center-body .main-info .settings .part .label {
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.4);
+  display: block;
+}
+
+.buyers.show .center-body .main-info .settings .part .value {
+  font-weight: 600;
+}
+
+.buyers.show .center-body .main-info .settings .part.rating .value {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.buyers.show .center-body .tab-content {
+  padding: 2rem 0;
+}
+
+.buyers.show .center-body .tab-content .detail-info table.table {
+  margin-bottom: 2rem;
+}
+
+.buyers.show .center-body .tab-content .detail-info table.table td {
+  padding: .25rem .5rem;
+  border: none;
+}
+
+.buyers.show .center-body .tab-content .detail-info table.table td:first-child {
+  width: 300px;
+  padding-left: 0;
+}
+
+.buyers.show .center-body .tab-content .detail-info .caption {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.buyers.show .center-body .tab-content .detail-info .value {
+  font-weight: 600;
+}
+
+.buyers.show .center-body .tab-content .detail-info .preview-file .value {
+  margin-bottom: .5rem;
+}
+
+.buyers.show .center-body .tab-content .detail-info .preview-file .img {
+  display: block;
+  width: 100%;
+  max-width: 225px;
+  height: 145px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0.25rem;
+  background-color: #f2f2f2;
+  margin-bottom: .5rem;
+}
+
+.buyers.show .center-body .tab-content .scoring .title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.3125rem;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card {
+  background: #FF7643;
+  padding: 28px 25px;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .form-group {
+  margin-bottom: 0.5rem;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .form-group select {
+  background: #fff;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .cards-label {
+  text-align: right;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card hr {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .card-name {
+  margin: 25px 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .card-name img {
+  margin-right: 0.5rem;
+  width: 18px;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .balance {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .balance .label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  margin-bottom: 2px;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .balance .value {
+  font-size: 1.3125rem;
+}
+
+.buyers.show .center-body .tab-content .scoring .choose-card .balance a.request {
+  display: block;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  padding: 10px 35px;
+  color: #fff;
+}
+
+.buyers.show .center-body .tab-content .scoring .scoring-results .table thead {
+  background: #f2f2f2;
+  border-radius: 0.25rem;
+}
+
+.buyers.show .center-body .tab-content .scoring .scoring-results .table thead th {
+  border: none;
+  font-size: 0.75rem;
+  font-weight: normal;
+  padding: .5rem;
+}
+
+.buyers.show .center-body .tab-content .scoring .scoring-results .table tbody td.yes {
+  color: #FF7643;
+}
+
+.buyers.show .center-body .tab-content .scoring .scoring-results .table tbody td.no {
+  color: #ff4646;
+}
+
+.buyers.show .center-body .tab-content .scoring .scoring_katm {
+  background: #f2f2f2;
+  padding: 28px 25px;
+  color: #000;
+  border-radius: 8px;
+}
+
+.buyers.show .center-body .tab-content .scoring .scoring_katm .form-control {
+  background: #fff;
+}
+
+.buyers.show .center-body .tab-content .scoring .scoring-katm-history td {
+  font-size: 0.875rem;
+  word-break: break-all;
+}
+
+.buyers.show .center-body .orders .order-status .status {
+  color: #3fa9f5;
+}
+
+.buyers.show .center-body .orders .order-status.status-0 {
+  color: #000;
+}
+
+.buyers.show .center-body .orders .order-status.status-5 {
+  color: #ff671d;
+}
+
+.buyers.show .center-body .orders .order-status.status-8, .buyers.show .center-body .orders .order-status.status-9 {
+  color: #FF7643;
+}
+
+.buyers.show .center-body .orders .contract-status.status-0 {
+  color: #000;
+}
+
+.buyers.show .center-body .orders .contract-status.status-1 {
+  color: #3fa9f5;
+}
+
+.buyers.show .center-body .orders .contract-status.status-9 {
+  color: #FF7643;
+}
+
+.buyers.show .center-body .orders.list .nav-tabs {
+  margin-bottom: 1rem;
+}
+
+.buyers.show .center-body .orders.list .dataTablesSearch {
+  margin-bottom: 2rem;
+}
+
+.buyers.show .center-body .orders.list .item {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 4px solid #f8f8f8;
+}
+
+.buyers.show .center-body .orders.list .item .info {
+  font-size: 0.875rem;
+  margin-bottom: .5rem;
+}
+
+.buyers.show .center-body .orders.list .item .info .number {
+  font-weight: 600;
+}
+
+.buyers.show .center-body .orders.list .item .info .status {
+  text-align: right;
+}
+
+.buyers.show .center-body .orders.list .item .params {
+  border: 1px solid #FF7643;
+  border-radius: 0.25rem;
+  padding: .5rem 1rem;
+  margin-bottom: .5rem;
+}
+
+.buyers.show .center-body .orders.list .item .params .part {
+  border-right: 1px solid #FF7643;
+}
+
+.buyers.show .center-body .orders.list .item .params .part:last-child {
+  border-right: none;
+}
+
+.buyers.show .center-body .orders.list .item .params .part .caption {
+  font-size: 0.75rem;
+  color: #FF7643;
+  margin-bottom: .25rem;
+}
+
+.buyers.show .center-body .orders.list .item .params .part.total .caption {
+  text-transform: uppercase;
+}
+
+.buyers.show .center-body .orders.list .item .params .part .value {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.buyers.show .center-body .orders.list .item .products .table {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.buyers.show .center-body .orders.list .item .products .table thead {
+  background: #f2f2f2;
+  border-bottom: none;
+}
+
+.buyers.show .center-body .orders.list .item .products .table thead th {
+  padding: .25rem 0;
+  vertical-align: middle;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.buyers.show .center-body .orders.list .item .products .table thead th:first-child {
+  border-radius: 0.25rem 0 0 0.25rem;
+  padding-left: .5rem;
+}
+
+.buyers.show .center-body .orders.list .item .products .table thead th:last-child {
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.buyers.show .center-body .orders.list .item .products .table tbody td {
+  border-top: none;
+  padding: .5rem 0;
+  vertical-align: middle;
+  font-size: 0.875rem;
+}
+
+.buyers.show .center-body .orders.list .item .products .table tbody td.total, .buyers.show .center-body .orders.list .item .products .table tbody td.amount {
+  font-weight: 600;
+}
+
+.buyers.show .center-body .orders.list .item .products .table tbody td.controls {
+  text-align: right;
+}
+
+.buyers.show .center-body .orders.show .lead {
+  font-size: 1.5rem;
+}
+
+.buyers.show .center-body .orders.show hr {
+  margin: 3rem 0;
+}
+
+.buyers.show .center-body .orders.show .center-header .title {
+  display: flex;
+  align-items: center;
+}
+
+.buyers.show .center-body .orders.show .center-header .title h1 {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.buyers.show .center-body .orders.show .center-header .title h1 .date {
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.buyers.show .center-body .orders.show .center-header .title .status {
+  margin-left: auto;
+}
+
+.buyers.show .center-body .orders.show .center-body {
+  padding: 0;
+  background-color: transparent;
+}
+
+.buyers.show .center-body .orders.show .details {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.buyers.show .center-body .orders.show .details .params {
+  border: 2px solid #FF7643;
+  border-radius: 0.25rem;
+  padding: .5rem 1rem;
+  margin-bottom: .5rem;
+}
+
+.buyers.show .center-body .orders.show .details .params .part {
+  border-left: 1px solid #FF7643;
+}
+
+.buyers.show .center-body .orders.show .details .params .part:first-child, .buyers.show .center-body .orders.show .details .params .part:last-child {
+  border-left: none;
+}
+
+.buyers.show .center-body .orders.show .details .params .part .caption {
+  font-size: 0.875rem;
+  color: #FF7643;
+  margin-bottom: .25rem;
+}
+
+.buyers.show .center-body .orders.show .details .params .part.total {
+  margin-top: -.5rem;
+  margin-bottom: -.5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  background: #f2f2f2;
+}
+
+.buyers.show .center-body .orders.show .details .params .part.total .value {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.buyers.show .center-body .orders.show .details .params .part .value {
+  font-size: 1.125rem;
+}
+
+.buyers.show .center-body .orders.show .details .params .part .value.sb {
+  font-weight: 600;
+}
+
+.buyers.show .center-body .orders.show .details .partner .part {
+  display: flex;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.buyers.show .center-body .orders.show .details .partner .part .caption {
+  color: rgba(0, 0, 0, 0.6);
+  width: 170px;
+}
+
+.buyers.show .center-body .orders.show .details .products .table {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.buyers.show .center-body .orders.show .details .products .table thead {
+  background: #f2f2f2;
+  border-bottom: none;
+}
+
+.buyers.show .center-body .orders.show .details .products .table thead th {
+  padding: .25rem 0;
+  vertical-align: middle;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.buyers.show .center-body .orders.show .details .products .table thead th:first-child {
+  border-radius: 0.25rem 0 0 0.25rem;
+  padding-left: .5rem;
+}
+
+.buyers.show .center-body .orders.show .details .products .table thead th:last-child {
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.buyers.show .center-body .orders.show .details .products .table tbody td {
+  border-top: none;
+  padding: 1rem 0;
+  vertical-align: middle;
+  border-bottom: 4px solid #f8f8f8;
+}
+
+.buyers.show .center-body .orders.show .details .products .table tbody td .total, .buyers.show .center-body .orders.show .details .products .table tbody td.amount {
+  font-weight: 600;
+}
+
+.buyers.show .center-body .orders.show .details .products .table tbody td.controls {
+  text-align: right;
+}
+
+.buyers.show .center-body .orders.show .details .products .table tbody td .vendor-code {
+  color: #999;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+.buyers.show .center-body .orders.show .details .products .table tbody td .total {
+  font-size: 1.125rem;
+  padding: .5rem;
+  border-radius: 0.25rem;
+  background: #f2f2f2;
+}
+
+.buyers.show .center-body .orders.show .details .products .table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.buyers.show .center-body .orders.show .order-block {
+  margin-top: 1rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 0.5rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.schedule .table thead th {
+  padding: .25rem 0;
+  border: none;
+  font-size: 0.75rem;
+  background: #f8f8f8;
+  font-weight: 400;
+}
+
+.buyers.show .center-body .orders.show .order-block.schedule .table thead th:first-child {
+  border-radius: 0.25rem 0 0 0.25rem;
+  padding-left: .5rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.schedule .table thead th:last-child {
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.buyers.show .center-body .orders.show .order-block.schedule .table tbody td {
+  padding: 1rem;
+  border-top: none;
+  border-bottom: 4px solid #f8f8f8;
+}
+
+.buyers.show .center-body .orders.show .order-block.schedule .table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.buyers.show .center-body .orders.show .order-block.schedule .status.status-1 {
+  color: #FF7643;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer hr {
+  margin-bottom: 1rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .title {
+  background: #FF7643;
+  color: #fff;
+  margin: -2rem -2rem 2rem;
+  padding: 2rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .info {
+  background: #f2f2f2;
+  padding: 1rem;
+  font-size: 1.125rem;
+  border-radius: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .info table {
+  width: 100%;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .info table td {
+  padding: .25rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .info table td:first-child {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .participants .lead {
+  font-size: 1.125rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .participants .lead:after {
+  display: none;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .participants table td {
+  padding: .25rem 0 .25rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .participants table td:first-child {
+  width: 100px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .offer-text {
+  line-height: 1.5;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .products table, .buyers.show .center-body .orders.show .order-block.offer .payments table {
+  width: 100%;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .products table th, .buyers.show .center-body .orders.show .order-block.offer .payments table th {
+  padding: 1rem;
+  background: #f2f2f2;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .products table th:first-child, .buyers.show .center-body .orders.show .order-block.offer .payments table th:first-child {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .products table th:last-child, .buyers.show .center-body .orders.show .order-block.offer .payments table th:last-child {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .products table td, .buyers.show .center-body .orders.show .order-block.offer .payments table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .products table tr:last-child td, .buyers.show .center-body .orders.show .order-block.offer .payments table tr:last-child td {
+  border-bottom: none;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .products table .total, .buyers.show .center-body .orders.show .order-block.offer .payments table .total {
+  font-weight: 600;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .payments table td {
+  padding: .5rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .offer-results .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+  margin-bottom: .25rem;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .offer-results .offer-total {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.buyers.show .center-body .orders.show .order-block.offer .offer-results .offer-condition .period {
+  font-weight: bold;
+}
+
+.buyers.show .center-body .contracts.list .contract-list {
+  font-size: 0.75rem;
+}
+
+.buyers.show .center-body .contracts.list .contract-list .created_at {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.buyers.show .center-body .contracts.list .contract-list .phone {
+  font-weight: 600;
+}
+
+.buyers.show .center-body .contracts.list .contract-list .debts.red {
+  color: #ff4646;
+}
+
+.buyers.show .center-body .contracts.list .contract-list .status {
+  color: #FF7643;
+  background: transparent;
+}
+
+.buyers.show .center-body .contracts.list .contract-list .period {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.buyers.show .center-body .contracts.list .contract-list img {
+  display: block;
+  margin: auto;
+}
+
+.buyers.edit .download a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.buyers.edit .download a:hover {
+  text-decoration: none;
+}
+
+.buyers.edit .preview, .buyers.edit .no-preview {
+  text-align: center;
+}
+
+.buyers.edit .preview .img, .buyers.edit .no-preview .img {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 3px #b3b3b3;
+  margin: 0 auto 1rem;
+}
+
+.buyers.edit .preview label, .buyers.edit .no-preview label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.buyers.edit .preview label .caption, .buyers.edit .no-preview label .caption {
+  padding-left: 25px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  color: #3fa9f5;
+  line-height: 1.125rem;
+}
+
+.buyers.edit .preview label .caption {
+  background-image: url(/images/icons/icon_ok_circle_green.svg);
+}
+
+.buyers.edit .preview label img {
+  margin-left: 5px;
+  width: 9px;
+  height: 9px;
+}
+
+.buyers.edit .preview .img {
+  box-shadow: 0 0 0 3px #7ac943;
+}
+
+.buyers.edit .no-preview .caption {
+  background-image: url(/images/icons/icon_plus_circle_blue.svg);
+}
+
+.buyers.edit .no-preview.img-selfie .img {
+  background-image: url(/images/media/dummy_selfie.jpg);
+}
+
+.buyers.edit .no-preview.img-passport-1 .img {
+  background-image: url(/images/media/dummy_passport_1.jpg);
+}
+
+.buyers.edit .no-preview.img-passport-2 .img {
+  background-image: url(/images/media/dummy_passport_2.jpg);
+}
+
+.catalog .dataTable td .preview-text {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.category-list tr td:first-child {
+  width: 25%;
+}
+
+.fields-list tr td:first-child {
+  width: 80%;
+}
+
+.contracts hr {
+  height: 4px;
+  border-top: 4px solid #f8f8f8;
+}
+
+.contracts hr.thin {
+  height: 1px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.contracts.list .contract-list {
+  font-size: 0.875rem;
+}
+
+.contracts.list .contract-list .created_at {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.contracts.list .contract-list .phone {
+  font-weight: 600;
+}
+
+.contracts.list .contract-list .debts.red {
+  color: #ff4646;
+}
+
+.contracts.list .contract-list .status-0 {
+  border: 1px solid #FFA41D;
+  color: #FFA41D;
+  text-align: center;
+  border-radius: 8px;
+  padding: 5px 16px;
+}
+
+.contracts.list .contract-list .status-1 {
+  border: 1px solid #0FBE7B;
+  color: #0FBE7B;
+  text-align: center;
+  border-radius: 5px;
+  padding: 7px 16px;
+}
+
+.contracts.list .contract-list .status-3, .contracts.list .contract-list .status-4 {
+  border: 1px solid #F84343;
+  color: #FE346E;
+  text-align: center;
+  border-radius: 5px;
+  padding: 7px 16px;
+}
+
+.contracts.list .contract-list .status-5, .contracts.list .contract-list .status-9 {
+  border: 1px solid #707070;
+  color: #707070;
+  text-align: center;
+  border-radius: 5px;
+  padding: 7px 16px;
+}
+
+.contracts.list .contract-list .period {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.contracts.list .contract-list img {
+  display: block;
+  margin: auto;
+}
+
+.contracts.show .center-body {
+  padding-top: 0;
+}
+
+.contracts.show .partner-buyer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.contracts.show .partner-buyer > div {
+  width: 45%;
+}
+
+.contracts.show .partner-buyer .title {
+  font-weight: 700;
+  margin: 2rem 0 1rem 0;
+}
+
+.contracts.show .partner-buyer .title .title-right {
+  color: red;
+}
+
+.contracts.show .partner-buyer .title .title-right .status-0 {
+  border: 1px solid #FFA41D;
+  color: #FFA41D;
+  text-align: center;
+  border-radius: 8px;
+  padding: 5px 16px;
+}
+
+.contracts.show .partner-buyer .title .title-right .status-1 {
+  border: 1px solid #0FBE7B;
+  color: #0FBE7B;
+  text-align: center;
+  border-radius: 8px;
+  padding: 5px 16px;
+}
+
+.contracts.show .partner-buyer .title .title-right .status-3, .contracts.show .partner-buyer .title .title-right .status-4 {
+  border: 1px solid #F84343;
+  color: #FE346E;
+  text-align: center;
+  border-radius: 8px;
+  padding: 5px 16px;
+}
+
+.contracts.show .partner-buyer .title .title-right .status-5, .contracts.show .partner-buyer .title .title-right .status-9 {
+  border: 1px solid #707070;
+  color: #707070;
+  text-align: center;
+  border-radius: 8px;
+  padding: 5px 16px;
+}
+
+.contracts.show .partner-buyer .photo {
+  margin-bottom: 1rem;
+}
+
+.contracts.show .partner-buyer .photo .preview {
+  width: 58px;
+  height: 58px;
+  border-radius: 0.25rem;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contracts.show .partner-buyer .photo .preview.dummy {
+  background-image: url(/images/icons/icon_user_grey_circle.svg);
+}
+
+.contracts.show .partner-buyer .caption .row {
+  margin-bottom: .45rem;
+}
+
+.contracts.show .partner-buyer .caption .row .label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.contracts.show .table-order {
+  width: 100%;
+}
+
+.contracts.show .table-order thead {
+  background: #f2f2f2;
+  border-radius: 0.25rem;
+}
+
+.contracts.show .table-order thead tr {
+  padding: 1rem;
+}
+
+.contracts.show .table-order thead tr th {
+  border: none;
+  font-size: 0.75rem;
+  font-weight: normal;
+  padding: .25rem .75rem;
+  vertical-align: middle;
+}
+
+.contracts.show .table-order tbody td {
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: .5rem .25rem;
+  vertical-align: inherit;
+  font-size: 0.75rem;
+}
+
+.contracts.show .table-order tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.contracts.show .order-info {
+  margin: 1rem 0;
+}
+
+.contracts.show .order-info .label {
+  width: 170px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.contracts.show .verify-act {
+  margin-top: 3rem;
+  background: #f2f2f2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.contracts.show .verify-act .lead {
+  margin-bottom: 1rem;
+}
+
+.contracts.show .verify-act .lead:after {
+  display: none;
+}
+
+.contracts.show .verify-act .form-group .custom-file-input {
+  background: #fff;
+}
+
+.contracts.show .order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.contracts.show .order-total .installment span {
+  display: block;
+}
+
+.contracts.show .order-total .installment span:first-child {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.contracts.show .order-total .total span {
+  display: block;
+}
+
+.contracts.show .order-total .total span:first-child {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+}
+
+.contracts.show .order-total .total span:nth-child(2) {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.contracts.show .table-schedule {
+  width: 100%;
+}
+
+.contracts.show .table-schedule thead {
+  background: #f2f2f2;
+  border-radius: 0.25rem;
+}
+
+.contracts.show .table-schedule thead tr th {
+  border: none;
+  font-size: 0.75rem;
+  font-weight: normal;
+  padding: .5rem 1rem;
+  vertical-align: middle;
+}
+
+.contracts.show .table-schedule tbody tr.expired {
+  color: #ff4646;
+}
+
+.contracts.show .table-schedule tbody tr td {
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.contracts.show .table-schedule tbody tr td .paid {
+  color: #FF7643;
+}
+
+.contracts.show .table-schedule tbody tr td.pay {
+  font-weight: 600;
+}
+
+.contracts.show .insurance {
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  margin: 0 -2rem;
+}
+
+.contracts.show .insurance .lead:after {
+  display: none;
+}
+
+.contracts.show .insurance .info {
+  background: url(/images/icons/icon_insurance2.svg) left top 8px no-repeat;
+  background-size: 21px auto;
+  padding-left: 2.5rem;
+}
+
+.contracts.show .insurance .info table td {
+  padding: .25rem;
+}
+
+.contracts.show .insurance .info table td:first-child {
+  padding-right: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.contracts.show .insurance-requests {
+  padding-top: 2rem;
+}
+
+.contracts.show .insurance-requests .lead {
+  margin-bottom: 1rem;
+}
+
+.contracts.show .insurance-requests .lead:after {
+  display: none;
+}
+
+.contracts.show .lawsuit table td {
+  padding: .25rem;
+}
+
+.contracts.show .lawsuit table td:first-child {
+  padding-right: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 575px) {
+  .discount.edit .form-controls .btn {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.discount.list .discount-list .inner {
+  padding: .25rem 1rem .25rem 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  margin: .25rem 0;
+}
+
+.discount.list .discount-list .dates {
+  font-size: 0.75rem;
+  color: #ff4646;
+}
+
+.discount.list .discount-list .dates .date {
+  margin-bottom: .25rem;
+}
+
+.discount.list .discount-list .title a {
+  color: #000;
+}
+
+.discount.list .discount-list .params {
+  background: #f8f8f8;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  padding: .5rem;
+}
+
+.discount.list .discount-list .params .period {
+  margin-bottom: .25rem;
+}
+
+.discount.list .discount-list .params .amount {
+  font-weight: 600;
+}
+
+.discount.list .discount-list .preview_text {
+  color: #b3b3b3;
+  font-size: 0.875rem;
+}
+
+.employee.list .dataTable tr {
+  font-size: 0.875rem;
+}
+
+.employee.list .dataTable tr .title a {
+  color: #000;
+}
+
+.employee.list .dataTable tr .role {
+  padding: .25rem .5rem;
+  background: #f2f2f2;
+  border-radius: 0.25rem;
+}
+
+.employee.list .dataTable tr .inner {
+  padding: .25rem 1rem .25rem 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  margin: .25rem 0;
+}
+
+.employee.edit .center-header {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 575px) {
+  .faq.edit .form-controls .btn {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.faq.list .faq-list .title a {
+  color: #000;
+}
+
+.faq.list .faq-list .text {
+  color: #b3b3b3;
+  font-size: 0.875rem;
+}
+
+.finances .content .center {
+  background-color: transparent;
+}
+
+.finances .content .center .center-body {
+  padding: 0;
+  background-color: transparent;
+}
+
+.finances .content .center .center-header {
+  background: #fff;
+}
+
+.finances .table2 tbody td {
+  padding: 0.5rem;
+}
+
+.finances .receipt-list table .amount {
+  font-weight: 600;
+}
+
+.finances .receipt-list table .red {
+  color: #ff4646;
+}
+
+.finances .receipt-list table .green {
+  color: #FF7643;
+}
+
+.finances .dataTablesSearch {
+  display: flex;
+  align-items: center;
+}
+
+.finances .dataTablesSearch input {
+  border-radius: 0.25rem;
+}
+
+.finances .dataTablesSearch input:focus {
+  z-index: 0;
+}
+
+.finances .dataTablesSearch .search-text {
+  margin-right: 1.5rem;
+}
+
+.finances .dataTablesSearch .icon-calendar {
+  margin-right: 0.5rem;
+}
+
+.finances .dataTablesSearch .input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.finances .dataTablesSearch .input-wrapper .input-grouped {
+  position: relative;
+}
+
+.finances .dataTablesSearch .input-wrapper .input-grouped.date {
+  width: 280px;
+}
+
+.finances .dataTablesSearch .input-wrapper .input-grouped.date input {
+  border: 0;
+}
+
+.finances .dataTablesSearch .input-wrapper .input-grouped.date .input-icon img {
+  width: 16px;
+}
+
+.finances .dataTablesSearch .gutter {
+  padding: 0 10px;
+}
+
+.finances .dataTablesSearch .input-icon {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.finances .dataTablesSearch .input-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.finances .finances-list {
+  font-size: 0.875rem;
+}
+
+.finances .finances-list th:nth-child(3) {
+  width: 80px;
+}
+
+.finances .finances-list .date {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.finances .finances-list .order-status {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.finances .finances-list .contract-status {
+  color: #FF7643;
+}
+
+.finances .finances-list .contract-status.status-4 {
+  color: #ff4646;
+}
+
+.finances .finances-list .order-link {
+  width: 24px;
+  height: 24px;
+  background: url("/images/icons/icon_arrow_grey_circle.svg") center no-repeat;
+  display: block;
+}
+
+.finances .finances-list .order-link:hover {
+  background: url("/images/icons/icon_arrow_green_circle.svg") center no-repeat;
+}
+
+.finances.order .order-block {
+  margin-top: 1rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 0.5rem;
+}
+
+.finances.order .stats {
+  background: #fff;
+  width: 100%;
+  border-radius: 0.5rem;
+  margin: 0;
+  border: 2px solid #FF7643;
+}
+
+.finances.order .stats .item-wrapper {
+  padding: 0.5rem 0;
+}
+
+.finances.order .stats .item-wrapper > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  border-left: 1px solid #00A193;
+}
+
+.finances.order .stats .item-wrapper > div .caption {
+  font-size: 0.875rem;
+}
+
+.finances.order .stats .item-wrapper > div .value {
+  font-size: 1.125rem;
+}
+
+.finances.order .stats .item-wrapper:first-child > div {
+  border-left: none;
+}
+
+.finances.order .stats .item-wrapper:last-child {
+  background: #f2f2f2;
+  border-radius: 0 8px 8px 0;
+}
+
+.finances.order .stats .item-wrapper:last-child > div {
+  border-left: none;
+}
+
+.finances.order .stats .item-wrapper .caption {
+  font-size: 0.875rem;
+  color: #FF7643;
+  margin-bottom: .5rem;
+}
+
+.finances.order .stats .item-wrapper .value {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.finances.order .add-receipt {
+  margin-top: 2rem;
+}
+
+.finances.order .add-receipt .error {
+  color: #ff4646;
+  font-size: 0.625rem;
+  margin-top: 4px;
+}
+
+.finances.order .offer .h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: url("/images/icons/icon_contract_green.svg") no-repeat center left;
+  padding-left: 2rem;
+}
+
+.finances.order .partner-buyer {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.finances.order .partner-buyer > div {
+  width: 50%;
+}
+
+.finances.order .partner-buyer .title {
+  font-weight: 700;
+  margin: 2rem 0 1rem 0;
+}
+
+.finances.order .partner-buyer .photo {
+  margin-bottom: 1rem;
+}
+
+.finances.order .partner-buyer .photo .preview {
+  width: 58px;
+  height: 58px;
+  border-radius: 0.25rem;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.finances.order .partner-buyer .photo .preview.dummy {
+  background-image: url(/images/icons/icon_user_grey_circle.svg);
+}
+
+.finances.order .partner-buyer .caption .row {
+  margin-bottom: 0.625rem;
+}
+
+.finances.order .partner-buyer .caption .row .label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.finances.order .order-info {
+  margin: 1rem 0;
+}
+
+.finances.order .order-info .label {
+  width: 170px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.finances.order .order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.finances.order .order-total .installment span {
+  display: block;
+}
+
+.finances.order .order-total .installment span:first-child {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.finances.order .order-total .total span {
+  display: block;
+}
+
+.finances.order .order-total .total span:first-child {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+}
+
+.finances.order .order-total .total span:nth-child(2) {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.finances.order .table-schedule {
+  width: 100%;
+}
+
+.finances.order .table-schedule thead {
+  background: #f2f2f2;
+  border-radius: 0.25rem;
+}
+
+.finances.order .table-schedule thead tr th {
+  border: none;
+  font-size: 0.75rem;
+  font-weight: normal;
+  padding: .5rem 1rem;
+  vertical-align: middle;
+}
+
+.finances.order .table-schedule tbody tr.expired {
+  color: #ff4646;
+}
+
+.finances.order .table-schedule tbody tr td {
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.finances.order .table-schedule tbody tr td .paid {
+  color: #FF7643;
+}
+
+.finances.order .table-schedule tbody tr td.pay {
+  font-weight: 600;
+}
+
+@media (max-width: 575px) {
+  .news.edit .form-controls .btn {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.news.list .news-list .inner {
+  padding: .25rem 1rem .25rem 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  margin: .25rem 0;
+}
+
+.news.list .news-list .date {
+  font-size: 0.75rem;
+  color: #ff4646;
+}
+
+.news.list .news-list .title a {
+  color: #000;
+}
+
+.news.list .news-list .preview_text {
+  color: #b3b3b3;
+  font-size: 0.875rem;
+}
+
+.container {
+  max-width: 1920px;
+}
+
+.content aside .user-card .top {
+  background: #FF7643;
+  color: #fff;
+  display: flex;
+  align-items: start;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 1.5rem;
+}
+
+.content aside .user-card .top .avatar {
+  margin-right: .75rem;
+}
+
+.content aside .user-card .top .avatar img {
+  width: 18px;
+  height: auto;
+}
+
+.content aside .user-card .top .name {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+.content aside .user-card .bottom {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.content aside .user-card .bottom .phone {
+  font-size: 1.125rem;
+  background: url(/images/icons/icon_call_green_circle.svg) left top 0.1875rem no-repeat;
+  background-size: 18px 18px;
+  padding-left: 1.75rem;
+  padding-bottom: 1rem;
+}
+
+.content aside .user-card .bottom a {
+  font-size: 0.875rem;
+}
+
+.list .dataTables_wrapper .dataTable .detail-link {
+  width: 24px;
+  height: 24px;
+  background: url("/images/icons/icon_arrow_grey_circle.svg") right center no-repeat;
+  display: block;
+}
+
+.list .dataTables_wrapper .dataTable .detail-link:hover {
+  background: url("/images/icons/icon_arrow_green_circle.svg") right center no-repeat;
+}
+
+@media (max-width: 575px) {
+  .list .dataTables_wrapper .dataTable .detail-link {
+    background-position: right center;
+    padding-right: 30px;
+    width: auto;
+    line-height: 24px;
+  }
+}
+
+.partners.list .date {
+  font-size: 0.75rem;
+}
+
+.partners.list .dataTables_wrapper .dataTable thead th:first-child {
+  padding-left: .25rem;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr {
+  cursor: pointer;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr:first-child td {
+  padding-top: .25rem;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td {
+  font-size: 0.875rem;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .icon-status {
+  width: 16px;
+  height: auto;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .date {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .preview {
+  width: 40px;
+  height: 40px;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .preview.dummy {
+  background-image: url(/images/icons/icon_shop.svg);
+  background-size: 30px auto;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .company {
+  color: #000;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .name {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .id {
+  background: #f2f2f2;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  display: inline-block;
+  padding: .15rem .5rem;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .phone {
+  font-weight: 600;
+  padding-left: 2rem;
+  background: url(/images/icons/icon_call_green_circle.svg) left center no-repeat;
+}
+
+.partners.list .dataTables_wrapper .dataTable tbody tr td .moderate-link {
+  padding-right: 1rem;
+}
+
+@media (max-width: 575px) {
+  .partners.show .center-body table tr {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .5rem;
+  }
+}
+
+.partners.show .center-body table tr td {
+  padding: .25rem .5rem .25rem 0;
+  border: none;
+}
+
+@media (max-width: 575px) {
+  .partners.show .center-body table tr td {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.partners.show .center-body table tr td .caption {
+  font-weight: 600;
+}
+
+.partners.show .center-body .organization {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 575px) {
+  .partners.show .center-body .organization {
+    display: block;
+  }
+}
+
+.partners.show .center-body .organization .preview {
+  margin-right: 1rem;
+  display: block;
+  height: 150px;
+  width: 100%;
+  max-width: 150px;
+  background-color: #e6e6e6;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 0.25rem;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 575px) {
+  .partners.show .center-body .organization .preview {
+    margin-bottom: 1rem;
+    max-width: 80px;
+    height: 80px;
+  }
+}
+
+.partners.show .center-body .organization .preview.dummy {
+  background-image: url(/images/media/noimage.svg);
+  background-size: 80px auto;
+}
+
+.partners.show .center-body .organization .id {
+  font-size: 1.125rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
+
+.partners.show .center-body .organization .name {
+  font-weight: bold;
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 575px) {
+  .partners.show .center-body .organization .name {
+    font-size: 1.5rem;
+  }
+}
+
+.partners.show .center-body .organization .description {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.partners.show .center-body .params {
+  border: 2px solid #FF7643;
+  border-radius: 0.25rem;
+  margin: 0 0 2rem;
+}
+
+.partners.show .center-body .params .part {
+  padding: .75rem 1rem .5rem;
+  border-right: 1px solid #FF7643;
+}
+
+@media (max-width: 575px) {
+  .partners.show .center-body .params .part {
+    border-bottom: 1px solid #FF7643;
+    border-right: none;
+    padding: .25rem 1rem;
+  }
+}
+
+@media (min-width: 575px) {
+  .partners.show .center-body .params .part:last-child {
+    border-right: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .partners.show .center-body .params .part:last-child {
+    border-bottom: none;
+  }
+}
+
+.partners.show .center-body .params .part .caption {
+  font-size: 0.875rem;
+  color: #FF7643;
+}
+
+.partners.show .center-body .params .part .value {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.slides.list .slides-list .inner {
+  padding: .25rem 1rem .25rem 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  margin: .25rem 0;
+}
+
+.slides.list .slides-list .date {
+  font-size: 0.75rem;
+  color: #ff4646;
+}
+
+.slides.list .slides-list .title a {
+  color: #000;
+}
+
+.statistics .error {
+  color: #ff4646;
+  padding: .5rem 0;
+  font-size: 0.875rem;
+  position: absolute;
+}
+
+.statistics .loader {
+  position: absolute;
+  z-index: 10;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statistics.finance .filtered .results .table {
+  position: relative;
+}
+
+.statistics.finance .filtered .results .table table {
+  width: 100%;
+}
+
+
+.status-13 {
+  background-color: black !important;
+  color: #fff !important;
+}
+
+.page-a4 p {
+  text-align: justify;
+  line-height: 35px;
+  font-size: 16.5pt;
+  margin: 0;
+}
+
+#letter p span {
+  font-weight: 700;
+}
+
+.indent {
+  text-align: justify;
+  text-indent: 30px;
+}
+
+.letter p span {
+  font-weight: bold;
+}
+
+.letter img {
+  cursor: pointer;
+}
+
+.topside {
+
+}
+
+.topside__top {
+  margin-bottom: 30px;
+}
+
+.topside .topside__top h2 {
+  font-size: 38px;
+  text-align: center;
+  margin: 0;
+}
+
+.topside .topside__top-address {
+  font-size: 12pt;
+  font-weight: bold;
+  line-height: 26px;
+  margin: 0;
+  text-align: center;
+}
+
+.topside__top-style hr:nth-child(1) {
+  border-top: 1px solid black;
+  margin: 1px;
+}
+
+.topside__top-style hr:nth-child(2) {
+  border-top: 3px solid black;
+  margin: 1px;
+}
+
+.topside__top-style hr:nth-child(3) {
+  border-top: 1px solid black;
+  margin: 1px;
+}
+
+.topside__info {
+  font-size: 17pt;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.topside__info-buyer {
+  width: 40%;
+  text-align: right;
+  font-size: 17pt;
+  word-wrap: break-word;
+  font-weight: 500;
+}
+
+.topside__info-company {
+  font-size: 17pt;
+  text-align: left;
+  word-wrap: break-word;
+  width: 40%;
+}
+
+.topside__info-date {
+  font-weight: bold;
+}
+
+.letter {
+  font-size: 14.5pt;
+}
+
+.letter p {
+  text-indent: 30px;
+}
+
+.bottomside p span {
+  font-weight: bold;
+}
+
+.letter__title {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.bottomside__info {
+  padding-left: 30px;
+}
+
+.bottomside__register {
+  margin-top: 40px;
+  position: relative;
+}
+
+.bottomside__register h3 {
+  font-weight: 700;
+}
+
+.bottomside__register-stamp {
+  width: 440px;
+  height: 448px;
+  object-fit: contain;
+  position: absolute;
+  left: 30%;
+  top: -200px;
+}
+
+.bottomside__number {
+  font-style: italic;
+  font-size: 12pt !important;
+  margin-top: 10px !important;
+}
+
+.info {
+
+}
+
+.info textarea {
+  width: 100%;
+}
+.info__images {
+    gap: 8px;
+    background: whitesmoke;
+    padding: 8px;
+    border-radius: 8px;
+}
+.info__images img {
+    cursor: pointer;
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: all .3s ease-out;
+}
+.info__images img.no-image {
+    object-fit: none;
+    pointer-events: none;
+}
+.info__images img:hover {
+    filter: brightness(.9);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgb(0, 0, 0, 0.5);
+}
+
+.modal {
+  top: 50px;
+  z-index: 9999;
+}
+
+.page-a4 {
+  font-size: 14.5pt;
+  font-family: "Times New Roman", monospace;
+  min-height: 29.7cm;
+  padding: 2cm;
+  margin: 0 auto;
+  border: 1px #D3D3D3 solid;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+  html, body {
+    width: 21cm !important;
+    height: 29.7cm !important;
+  }
+  .page-a4 {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: initial;
+    border-radius: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+    width: 1020px;
+  }
+
+  .court-letter {
+      height: 1000px;
+  }
+
+  .residency {
+    box-sizing: border-box;
+    padding: 0 1cm 0 3cm;
+  }
+  .residency p{
+    font-size: 17pt !important;
+  }
+
+  .info, .modal, .center-header, form, .left-menu, .polipop__notifications {
+    display: none !important;
+  }
+
+  #letter {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .executive-top {
+    width: 760px;
+  }
+
+  body {
+    margin: 0 1.6cm;
+  }
+
+}
+
+.executive {
+  font-family: "Times New Roman";
+}
+
+.ql-editor {
+  max-height: 540px !important;
+}
+
+.executive p {
+  margin: 0;
+}
+
+.executive-top {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.executive-top__title {
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.executive-top__subtitle {
+  margin-bottom: 20px;
+}
+
+.executive-top__address {
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.executive-body {
+  text-align: justify;
+  font-size: 19px;
+  font-size: 14.5pt;
+
+}
+
+.executive-body p {
+  text-indent: 50px;
+  line-height: 35px;
+}
+
+.executive-footer {
+
+}
+
+.executive-footer__mark {
+  background-color: #8a8ae2;
+  color: #4242d2;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20pt;
+  margin: 14px 0 !important;
+}
+
+.executive-footer__debt {
+  font-size: 19px;
+  line-height: 26px;
+}
+
+.executive-footer__fio {
+  font-weight: bold;
+}
+
+.executive-footer__fio h3 {
+  font-weight: 700;
+}
+
+.ticket {
+  width: 385px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  padding: 20px;
+}
+
+.ticket h4 {
+  font-size: 14pt;
+  font-weight: 700;
+  text-align: center;
+}
+
+.ticket img {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.ticket p {
+  font-size: 14pt !important;
+  text-align: left !important;
+}
+
+.second p {
+  line-height: 26px;
+}
+
+.info__company p {
+    background: #f1f1f1;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.info__company p span {
+    font-weight: 700;
+}

@@ -1,0 +1,44 @@
+#app {
+  min-height: calc(100vh - 66px) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+
+}
+
+.layout {
+  flex: 1;
+}
+
+.ant-layout-content {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+}
+
+.ant-table-pagination.ant-pagination {
+  padding: 0 16px;
+}
+.ant-pagination {
+  .ant-pagination-prev .ant-pagination-item-link, 
+  .ant-pagination-next .ant-pagination-item-link {
+    position: relative;
+    .anticon {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+}
+.district-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}

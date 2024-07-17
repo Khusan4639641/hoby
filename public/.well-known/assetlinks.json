@@ -1,0 +1,38 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "uz.test.test_mobile",
+      "sha256_cert_fingerprints": [
+        "B1:27:74:15:E2:D7:0B:47:44:FB:F3:C0:37:63:66:F6:D7:ED:77:FF:83:4D:94:4A:EE:13:C1:BD:62:0F:50:8D"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "uz.solutionslab.test_vendor",
+      "sha256_cert_fingerprints": [
+        "35:FB:CE:51:17:91:6C:A3:80:86:BA:48:E5:BA:D6:81:95:DB:D6:A5:83:F8:B8:4E:FC:FB:AF:AC:4D:EB:D9:72"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "uz.solutionslab.test.test",
+      "sha256_cert_fingerprints": [
+        "79:62:20:69:C2:33:14:3F:41:C9:79:AE:A9:EA:9F:7A:E5:32:7F:53:93:FC:42:73:F0:AC:2D:9B:80:FE:45:5A"
+      ]
+    }
+  }
+]

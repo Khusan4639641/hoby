@@ -1,0 +1,1889 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "REST API test Documentation",
+    "description": "",
+    "contact": {
+      "email": "info@test.uz"
+    },
+    "license": {
+      "name": "Go to version 3.0.0",
+      "url": "/api/documentation/v3"
+  },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://test.test.uz/api/v1",
+      "description": "REST API test Service"
+    }
+  ],
+  "paths": {
+    "/login/send-sms-code": {
+      "post": {
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "SMS code user by phone",
+        "description": "Return code",
+        "operationId": "send sms",
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "Buyer phone",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/login/auth": {
+      "post": {
+        "tags": [
+          "Authorization"
+        ],
+        "summary": "Authorization user by phone or id and password",
+        "description": "Return token",
+        "operationId": "auth",
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "Phone",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "SMS code",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Language of buyer user interface and messages",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "uz",
+                "ru"
+              ],
+              "example": "uz"
+            }
+          },
+          {
+            "name": "system",
+            "in": "query",
+            "description": "User device type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "android",
+                "ios"
+              ],
+              "example": "android"
+            }
+          },
+          {
+            "name": "fcb_token",
+            "in": "query",
+            "description": "Firebase token",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "partner_id",
+            "in": "query",
+            "description": "Partner ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "Password",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "password"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/buyer/change-lang": {
+      "get": {
+        "tags": [
+          "Change language"
+        ],
+        "summary": "Change user language",
+        "description": "Change user language",
+        "operationId": "change-lang",
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "lang of user interface",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "uz",
+                "ru"
+              ],
+              "example": "uz"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/buyer/katm-scoring": {
+      "post": {
+        "tags": [
+          "KATM"
+        ],
+        "summary": "Katm scoring create request",
+        "description": "Return json",
+        "operationId": "katm-scoring",
+        "parameters": [
+          {
+            "name": "buyer_id",
+            "in": "query",
+            "description": "Buyer id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/katm-report": {
+      "post": {
+        "tags": [
+          "KATM"
+        ],
+        "summary": "Katm scoring get report",
+        "description": "Return json",
+        "operationId": "katm-report",
+        "parameters": [
+          {
+            "name": "buyer_id",
+            "in": "query",
+            "description": "Buyer id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/detail": {
+      "get": {
+        "tags": [
+          "User info"
+        ],
+        "summary": "Info of authorized user",
+        "description": "Return json",
+        "operationId": "user-info",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/send-sms-code-uz": {
+      "post": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Send sms code for verification",
+        "description": "Return json",
+        "operationId": "send-sms-code-uz",
+        "parameters": [
+          {
+            "name": "card_number",
+            "in": "query",
+            "description": "Card number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "card_valid_date",
+            "in": "query",
+            "description": "Expitration date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/check-sms-code-uz": {
+      "post": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Send sms code for confirm verification",
+        "description": "Return json",
+        "operationId": "check-sms-code-uz",
+        "parameters": [
+          {
+            "name": "card_number",
+            "in": "query",
+            "description": "Card number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "card_valid_date",
+            "in": "query",
+            "description": "Expitration date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "SMS code",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/cards": {
+      "get": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "List cards of buyer",
+        "description": "Return json",
+        "operationId": "cards",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/card/add": {
+      "post": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Add card after verification (after methods send sms and check sms)",
+        "description": "Return json",
+        "operationId": "card-add",
+        "parameters": [
+          {
+            "name": "card_number",
+            "in": "query",
+            "description": "Card number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "card_valid_date",
+            "in": "query",
+            "description": "Expitration date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "buyer_id",
+            "in": "query",
+            "description": "Buyer id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/card/add": {
+      "post": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Add additional card",
+        "description": "Return json",
+        "operationId": "card-add-else",
+        "parameters": [
+          {
+            "name": "card_number",
+            "in": "query",
+            "description": "Card number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "card_valid_date",
+            "in": "query",
+            "description": "Expitration date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "buyer_id",
+            "in": "query",
+            "description": "Buyer id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation if true return card_token for use card/confirm method"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/card/confirm": {
+      "post": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Confirm additional card by sms code",
+        "description": "Return json",
+        "operationId": "card-confirm",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "Sms code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "card_token",
+            "in": "query",
+            "description": "Token for additional card",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/modify": {
+      "post": {
+        "tags": [
+          "User info"
+        ],
+        "summary": "Load passport image for buyer",
+        "description": "Return json",
+        "operationId": "buyer-modify",
+        "parameters": [
+          {
+            "name": "passport_selfie",
+            "in": "query",
+            "description": "Image passport with buyer face",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "passport_first_page",
+            "in": "query",
+            "description": "Image passport first page",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "step",
+            "in": "query",
+            "description": "step",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/balance": {
+      "get": {
+        "tags": [
+          "User info"
+        ],
+        "summary": "Personal account balance of buyer",
+        "description": "Return json",
+        "operationId": "balance",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/deposit/add": {
+      "post": {
+        "tags": [
+          "User info"
+        ],
+        "summary": "Add personal account balance for buyer",
+        "description": "Return json",
+        "operationId": "deposit-add",
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "query",
+            "description": "Card id from method buyer/cards",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sum",
+            "in": "query",
+            "description": "Amount of deposit",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/add-guarant": {
+      "post": {
+        "tags": [
+          "Guarants"
+        ],
+        "summary": "Add friend for buyer",
+        "description": "Return json",
+        "operationId": "guarant-add",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Guarant full name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "Guarant phone",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "buyer_id",
+            "in": "query",
+            "description": "Buyer id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/friend/add": {
+      "post": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Add friend for buyer",
+        "description": "Return json",
+        "operationId": "friend-add",
+        "parameters": [
+          {
+            "name": "friend_phone",
+            "in": "query",
+            "description": "Friend phone",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/pay-services/list": {
+      "get": {
+        "tags": [
+          "Pay services"
+        ],
+        "summary": "List of pay services",
+        "description": "Return json",
+        "operationId": "pay-services",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/pay-services/pay": {
+      "post": {
+        "tags": [
+          "Pay services"
+        ],
+        "summary": "Payment for selected pay service",
+        "description": "Return json",
+        "operationId": "pay-services-pay",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "account",
+            "in": "query",
+            "description": "Account phone",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "Amount for pay",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/bonus-balance": {
+      "get": {
+        "tags": [
+          "Pay services"
+        ],
+        "summary": "Bonus balance",
+        "description": "Return json",
+        "operationId": "bonus-balance",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/contracts": {
+      "get": {
+        "tags": [
+          "Contracts"
+        ],
+        "summary": "List of buyer contracts",
+        "description": "Return json",
+        "operationId": "contracts",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/contract": {
+      "post": {
+        "tags": [
+          "Contracts"
+        ],
+        "summary": "Contract for buyer",
+        "description": "Return json",
+        "operationId": "contract",
+        "parameters": [
+          {
+            "name": "contract_id",
+            "in": "query",
+            "description": "Contract_id from method buyer/contracts",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/contract/pay": {
+      "post": {
+        "tags": [
+          "Contracts"
+        ],
+        "summary": "Contract pay",
+        "description": "Return json",
+        "operationId": "contract-pay",
+        "parameters": [
+          {
+            "name": "total",
+            "in": "query",
+            "description": "Amount for payment",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "contract_id",
+            "in": "query",
+            "description": "Contract id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "description": "Order id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "query",
+            "description": "Card id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Payment type from card/from account",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "card",
+                "account"
+              ],
+              "example": "card"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/catalog/list": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "List of categories",
+        "description": "Return json",
+        "operationId": "catalog",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/catalog/partners/list": {
+      "post": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "List partners of category",
+        "description": "Return json",
+        "operationId": "catalog-partner-list",
+        "parameters": [
+          {
+            "name": "catalog_id",
+            "in": "query",
+            "description": "Catalog id from method catalog/list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/catalog/partner": {
+      "post": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "Partner information",
+        "description": "Return json",
+        "operationId": "catalog-partner",
+        "parameters": [
+          {
+            "name": "partner_id",
+            "in": "query",
+            "description": "Partner info",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/news/list": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "summary": "News list",
+        "description": "Return json",
+        "operationId": "news-list",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "mobile",
+                "web",
+                "all"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/news/detail/{id}": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "summary": "News detailed",
+        "description": "Return json",
+        "operationId": "news-item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "News id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/categories/list": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Categories list",
+        "description": "Return json",
+        "operationId": "categories-list",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/categories/detail/{id}": {
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Category detailed",
+        "description": "Return json",
+        "operationId": "category-item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Category id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/partners/list": {
+      "get": {
+        "tags": [
+          "Partners"
+        ],
+        "summary": "Partners list",
+        "description": "Return json",
+        "operationId": "partners-list",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/partners/detail/{id}": {
+      "post": {
+        "tags": [
+          "Partners"
+        ],
+        "summary": "Partner detailed",
+        "description": "Return json",
+        "operationId": "partner-item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Partner id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/slides/list": {
+      "get": {
+        "tags": [
+          "Slides"
+        ],
+        "summary": "Slides list",
+        "description": "Return json",
+        "operationId": "slides-list",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/slides/detail/{id}": {
+      "post": {
+        "tags": [
+          "Slides"
+        ],
+        "summary": "Slides detailed",
+        "description": "Return json",
+        "operationId": "slides-item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Slide id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/notify/list": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Notifications list",
+        "description": "Return json",
+        "operationId": "notify-list",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/notify/detail": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Notifications list",
+        "description": "Return json",
+        "operationId": "notify-detail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Notify id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/paycoin/list": {
+      "get": {
+        "tags": [
+          "Paycoints"
+        ],
+        "summary": "List of paycoints",
+        "description": "Return json",
+        "operationId": "paycoin",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/paycoin/pay": {
+      "post": {
+        "tags": [
+          "Paycoints"
+        ],
+        "summary": "Payment level",
+        "description": "Return json",
+        "operationId": "paycoin-pay",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Type",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "discount",
+                "limit",
+                "month"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/paycoin/balance": {
+      "get": {
+        "tags": [
+          "Paycoints"
+        ],
+        "summary": "Account balance of paycoints",
+        "description": "Return json",
+        "operationId": "paycoin-balance",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/payments": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "summary": "Payments list",
+        "description": "Return json",
+        "operationId": "payments-list",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    },
+    "/buyer/payment/detail": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "summary": "Payment detailed",
+        "description": "Return json",
+        "operationId": "payment-detail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Payment id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "api_token_security": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "api_token_security": {
+        "type": "apiKey",
+        "description": "Authentication with api_token",
+        "name": "api_token",
+        "in": "query"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Authorization",
+      "description": "Authorization buyer, partner and employeer. For buyer first use method send-sms-code after receive SMS use method auth. For employeer use phone and password in method auth. For partner use partner_id and password"
+    }
+  ]
+}

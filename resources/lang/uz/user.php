@@ -1,0 +1,32 @@
+<?php
+return [
+    'status_0' => 'yangi',
+    'status_1' => 'Нужно добавить карту',
+    'status_2' => 'Ожидание верификации',
+    'status_3' => 'tekshiruvning rad etish',
+    'status_4' => 'Верифицирован',
+    'status_5' => 'Верификация myID',
+    'status_6' => 'фото не прошло',
+    'status_7' => 'фото не прошло',
+    'status_8' => 'Заблокирован',
+    'status_9' => 'o`chirildi',
+    'status_10' => 'Нужно фото селфи с паспортом',
+    'status_11' => 'Нужно фото паспорта со страницей прописки',
+    'status_12' => 'Добавить доверителя',
+    'status_13' => 'в черном списке',
+
+    'statuslar_13' => 'Mijoz shartnomani tuza olmaydi. Call-centrga murojaat qiling ' . callCenterNumber(4),
+    'statuslar_14' => 'Mijoz ushbu sotuvchi bilan shartnoma tuza olmaydi. Call-centrga murojaat qiling ' . callCenterNumber(4),
+    'statuslar_403' => 'Mijozda qarzdorlik mavjud',
+    'statuslar_0' => 'Foydalanuvchi topilmadi',
+    'statuslar_1' => 'Mijozni ro`yxatdan o`tkazing',
+    'statuslar_2' => 'Tekshiruv jarayonida',
+    'statuslar_4' => 'Tasdiqlangan',
+    'statuslar_5' => 'Rad etildi: Pasport rasmini yuklang',
+    'statuslar_8' => 'Rad etildi',
+    'statuslar_9' => 'Foydalanuvchi bloklangan',
+    'statuslar_10' => 'Rad etildi: Pasport bilan selfini yuklang',
+    'statuslar_11' => 'Rad etildi: Propiska sahifasini yuklang',
+    'statuslar_12' => 'Rad etildi: Aloqa uchun shaxslarni ko`rsating',
+];
+

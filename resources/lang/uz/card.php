@@ -1,0 +1,26 @@
+<?php
+return [
+    'btn_add'                          => 'Добавить карту',
+    'uzcard_humo'                      => 'Uzcard / Humo',
+    'card_not_empty_error'             => 'Выберите карту',
+    'uzcard_get_token_error'           => 'Ошибка при получении токена UZCARD!',
+    'no_money'                         => 'Пул йук',
+    'card_number'                      => 'Номер карты',
+    'card_exp'                         => 'Срок карты',
+    'sms_code'                         => 'Смс код',
+    "card_not_found"                   => "Karta topilmadi!",
+    "card_is_not_user's"               => "Karta bu foydalanuvchiga tegishli emas!",
+    'card_does_not_exist'              => 'Ushbu karta bizning tizimimizda mavjud emas!',
+    "card_is_not_active_in_our_system" => "Ushbu karta bizning tizimimizda faol emas",
+    'something_went_wrong'             => 'Qandaydur xatolik ro\'y berdi',
+    'card_info_has_been_obtained'      => 'Karta maʼlumotlari muvaffaqiyatli qabul qilindi',
+    'card_number_is_incorrect'         => 'Karta raqami noto\'g\'ri',
+    'error_phone_not_equals'           => 'Xaridorning telefon raqami kartaning sms-xabarnoma xizmatiga ulangan telefon raqamiga mos kelmayapti',
+    'empty_balance'                    => "Kartada mablag' yetarli emas",
+    'error_card_scoring'               => 'Kartaning to\'lov qobiliyati yetarli emas! Iltimos, boshqa kartani kiriting',
+    'error_scoring'                    => "Skoring servisi vaqtinchalik ishlamayapti. Iltimos, keyinroq qayta urinib ko`ring",
+    'service_is_not_available'         => 'Servis ishlamayapti. Iltimos, keyinroq qayta urinib ko`ring',
+    'error_card_sms_off'               => 'SMS xabar berish ulanmagan',
+    'error_card_number_or_valid_date'  => "Karta raqami yoki amal qilish muddati noto'g'ri kiritilgan",
+    'error_kyc_not_verified'           => "Kartangiz KYC tekshiruvidan o‘tmadi, iltimos, ushbu kartani tasdiqlang"
+];

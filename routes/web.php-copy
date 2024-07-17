@@ -1,0 +1,541 @@
+<?php
+
+use App\Helpers\EncryptHelper;
+use App\Helpers\ImageHelper;
+use App\Helpers\KatmHelper;
+use App\Helpers\PaymentHelper;
+use App\Helpers\PushHelper;
+use App\Helpers\QRCodeHelper;
+use App\Helpers\SmsHelper;
+use App\Helpers\TelegramHelper;
+use App\Helpers\UniversalHelper;
+
+use App\Http\Controllers\Core\CardController;
+
+use App\Http\Controllers\Web\Panel\PaymentController;
+use App\Models\Buyer;
+use App\Models\BuyerSetting;
+use App\Models\Card;
+use App\Models\Card as Model;
+use App\Models\CardScoring;
+use App\Models\CardScoringLog;
+use App\Models\KatmScoring;
+use App\Models\Ocr;
+use App\Models\PaymentsData;
+use App\Models\User;
+
+
+use Carbon\Carbon;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+
+use App\Helpers\CardHelper;
+
+use click\models\Payments;
+use LaravelQRCode\Facades\QRCode;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+$order = \App\Models\Order::find(10738);
+
+Route::view('{locale?}/testact', 'billing.order.parts.account_pdf', ['order' => $order, 'nds' => 0.15]);
+
+//App::setLocale('ru');
+
+Route::group(['namespace' => 'Web', 'prefix'=> '{locale?}', 'middleware' => 'locale' ], function () {
+
+    /* Frontend */
+    Route::group(['namespace' => 'Frontend'], function () {
+
+
+        Route::get('card',function (){  // быстро посмотреть че с картой
+
+            $card_number = EncryptHelper::encryptData('9860160130905435');
+            $card_valid_date = EncryptHelper::encryptData('2411');
+
+            $request = new Request();
+            $request->merge([
+                'info_card' => [
+                    'card_number' => $card_number,
+                    'card_valid_date' => $card_valid_date
+                ]
+            ]);
+
+            $res = new \App\Http\Controllers\Core\UniversalController();
+            $result = $res->getCardInfo($request);
+            dd($result);
+        });
+
+        // авто уведомление клиентов о предстоящем списании
+        Route::get('autonotify',function (Request $request) {
+
+            $date_from = date('Y-m-d 00:00:00', strtotime('+3 day '));
+            $date_to = date('Y-m-d 23:59:59', strtotime('+3 day'));
+
+            $cps = \App\Models\ContractPaymentsSchedule::select('user_id', 'balance', 'contract_id')->whereBetween('payment_date', [$date_from, $date_to])->where('status', 0)->get();
+            echo $date_from . ' ' . $date_to;
+
+            $options = [
+                'type' => PushHelper::TYPE_NEWS_ALL,
+                'title_uz' => 'Предстоящая оплата',
+                'title_ru' => 'Предстоящая оплата',
+                'user_id' => null,
+                'text_ru' => null,
+                'text_uz' => null,
+            ];
+            foreach ($cps as $item) {
+                $sum = number_format($item->balance, 2, '.', ' ');
+                $options['user_id'] = $item->user_id;
+                $options['text_uz'] = "Уведомление о предстоящей оплате договора №{$item->contract_id} на сумму {$sum} сум через 3 дня  !";
+                $options['text_ru'] = "Уведомление о предстоящей оплате договора №{$item->contract_id} на сумму {$sum} сум через 3 дня  !";
+                PushHelper::sendTest($options);
+            }
+
+        });
+
+        Route::get('refund',function () { // ручной возврат средств НЕ УДАЛЯТЬ!!!
+
+//<<<<<<< HEAD
+            $transaction_id = '011994838183';
+            $payment_id = 512;
+            //$uuid ='test_hold_b6f6ee69-df6f-4b0b-a495-17a3d9f15c1e';
+//=======
+            $transaction_id = '011994826316';
+            $payment_id = 471;
+           // $uuid ='test_hold_49863d7a-7064-4aea-ad5a-8a385732d328';
+//>>>>>>> 2128d32199831d2677ce3cf90b3adf9561454a77
+
+            $request = new Request();
+            $request->merge([
+                'type' => 1,
+                'transaction_id' => $transaction_id,
+                'payment_id' => $payment_id,
+                //'uuid' => $uuid
+            ]);
+            $res = new \App\Http\Controllers\Core\UniversalController();
+            $result = $res->reverse($request);
+            dd($result);
+        });
+
+
+        Route::get('ts',function (){
+
+          //  phpinfo();
+            //echo md5('998903285426'.'99ff912e28a84ea971480b89ee31367e');
+            //echo md5('1' . '998903194634' . '1000' .'99ff912e28a84ea971480b89ee31367e');
+        });
+
+        Route::get('autopayment',function (){  // ручное автосписание НЕ УДАЛЯТЬ!!!
+            $pay = new PaymentController();
+            $res = $pay->autopayment();
+            print_r($res);
+            echo 'done!';
+        });
+
+        Route::get('/', 'IndexController@index')->name('home');
+        Route::any('/score', 'FrontendController@score')->name('score'); // эмулятор скоринга
+        Route::get('/form', 'FrontendController@form')->name('form');
+        Route::post('/send', 'FrontendController@send')->name('send');
+        Route::get('/logme', 'LoginController@logme')->name('logme');
+
+        Route::resource('/news', 'NewsController');
+        Route::resource('/discounts', 'DiscountController');
+        Route::get('/search', 'SearchController@index')->name('search');
+        Route::get('/faq', 'FaqController@index')->name('faq.index');
+        Route::any('/download', 'FrontendController@downloadFromUrl')->name('download.url');
+
+        //Route::get('/migrate', 'MigrateController@migrate')->name('migrate');
+        //Route::get('/clear', 'MigrateController@clear')->name('clear');
+
+        Route::group(['prefix' => 'page'], function () {
+            Route::name('page.')->group(function () {
+                Route::get('/about', 'PageController@render')->name('about');
+                Route::get('/payment', 'PageController@render')->name('payment');
+                Route::get('/installment', 'PageController@render')->name('installment');
+                Route::get('/bonus', 'PageController@render')->name('bonus');
+            });
+        });
+
+        // Cart
+        Route::group(['prefix' => 'cart'], function () {
+            Route::get('/', 'CartController@index')->name('cart');
+            Route::name('cart.')->group(function () {
+                Route::any('/add/', 'CartController@add')->name('add');
+                Route::any('/update/', 'CartController@update')->name('update');
+                Route::any('/delete/', 'CartController@delete')->name('delete');
+                Route::name('settings.')->group(function () {
+                    Route::any('/save', 'CartController@saveSettings')->name('save');
+                    Route::any('/load', 'CartController@loadSettings')->name('load');
+                });
+            });
+        });
+
+        // Order
+        Route::group(['prefix' => 'order'], function () {
+            Route::name('order.')->group(function () {
+                Route::get('/{type}/', 'OrderController@processing')->where('type', '(direct|credit)')->name('processing');
+            });
+
+        });
+
+        //Catalog
+        Route::group(['prefix' => 'catalog'], function () {
+            Route::name('catalog.')->group(function () {
+
+                Route::get('/', 'CatalogController@index')->name('index');
+
+                Route::group(['prefix' => 'category'], function () {
+                    Route::name('category.')->group(function () {
+
+                        Route::get('/{slug}-{id}', 'CatalogCategoryController@show')->where(['id' => '[0-9]+$', 'slug' => '.*'])->name('show');
+
+                    });
+                });
+
+                Route::group(['prefix' => 'product'], function () {
+                    Route::name('product.')->group(function () {
+
+                        Route::get('/{slug}-{id}', 'CatalogProductController@show')->where(['id' => '[0-9]+$', 'slug' => '.*'])->name('show');
+
+                    });
+                });
+
+            });
+        });
+
+        Route::get('/partners/welcome', 'PartnerController@welcome')->name('partners.welcome');
+        Route::get('/register', 'RegisterController@index')->name('register');
+
+        Route::group(['middleware' => ['guest']], function () {
+            Route::get('/partners/register', 'PartnerController@register')->name('partners.register');
+            Route::get('/partners/login', 'PartnerController@login')->name('partners.login');
+            //Route::get('/panel/login', 'LoginController@panelLogin')->name('panel.login');
+            Route::get('/panel/in', 'LoginController@panelLogin')->name('panel.login');
+            Route::post('/auth', '\App\Http\Controllers\Core\Auth\LoginController@auth')->name('auth');
+            Route::get('/invite', '\App\Http\Controllers\Core\Auth\LoginController@invite')->name('invite');
+            // Route::get('/invite/{user_id}', '\App\Http\Controllers\Core\Auth\LoginController@invite')->name('invite');
+
+        });
+
+        Route::resource('/partners', 'PartnerController');
+
+        Route::group(['middleware' => ['auth']], function () {
+            Route::get('/logout', 'LoginController@logout')->name('logout');
+        });
+    });
+
+    Route::middleware(['global', 'auth', 'entry'])->group(function () {
+
+        /* Cabinet (Buyer tools) */
+        Route::group(['namespace' => 'Cabinet', 'prefix' => 'cabinet', 'middleware' => 'profile'], function () {
+            Route::name('cabinet.')->group(function () {
+
+                //front page
+                Route::get('/', 'IndexController@index')->name('index');
+
+                //front page
+                Route::get('/account/refill', 'IndexController@refill')->name('account.refill');
+
+                //profile
+                Route::group(['prefix' => 'profile'], function () {
+                    Route::name('profile.')->group(function () {
+
+                        Route::get('/', 'ProfileController@show')->name('show');
+                        Route::get('/verify', 'ProfileController@verify')->name('verify');
+                        Route::get('/edit', 'ProfileController@edit')->name('edit');
+                        Route::any('/update', 'ProfileController@update')->name('update');
+
+                    });
+                });
+
+                Route::get('/cards', 'CardController@index')->name('cards.index');
+
+                //orders
+                Route::any('/orders/list', 'OrderController@list')->name('orders.list');
+                Route::resource('/orders', 'OrderController');
+
+                //payments
+                Route::any('/payments/list', 'PaymentController@list')->name('payments.list');
+                Route::resource('/payments', 'PaymentController');
+
+                //payment
+                Route::get('/pay/', 'PayController@index')->name('pay.index');
+
+                Route::get('/notifications', 'NotificationController@index')->name('notification.index');
+            });
+        });
+
+        /* Billing (Partner tools) */
+        Route::group(['namespace' => 'Billing', 'prefix' => 'billing'], function () {
+            Route::name('billing.')->group(function () {
+
+                //front page
+                Route::get('/', 'IndexController@index')->name('index');
+                Route::get('/user-status', 'IndexController@userStatus')->name('user.status');
+
+                //orders
+                Route::any('/orders/{id}/account', 'OrderController@account')->name('orders.account');
+                Route::any('/orders/list', 'OrderController@list')->name('orders.list');
+                Route::resource('/orders', 'OrderController');
+
+                //affiliates
+                Route::any('/affiliates/list', 'AffiliateController@list')->name('affiliates.list');
+                Route::resource('/affiliates', 'AffiliateController');
+
+                //catalog
+                Route::name('catalog.')->prefix('catalog')->group(function () {
+                    Route::get('/', 'CatalogProductController@index')->name('index');
+                    Route::resource('/products', 'CatalogProductController')->except('show');
+                    Route::get('/products/category-export', 'CatalogProductController@categoryExport')->name('products.category-export');
+                    Route::get('/products/import', 'CatalogProductController@import')->name('products.import');
+                    Route::get('/products/export', 'CatalogProductController@export')->name('products.export');
+                    Route::get('/products/list', '\App\Http\Controllers\Web\Billing\CatalogProductController@list')->name('products.list');
+                    //Route::resource( '/categories', 'CatalogCategoryController' )->except( 'show' );
+                });
+
+                //profile
+                Route::name('profile.')->prefix('profile')->group(function () {
+                    Route::get('/', 'ProfileController@show')->name('index');
+                    Route::get('/edit', 'ProfileController@edit')->name('edit');
+                    Route::get('/settings', 'ProfileController@settings')->name('settings');
+                    Route::any('/update', 'ProfileController@update')->name('update');
+                    Route::any('/update-settings', 'ProfileController@updateSettings')->name('update-settings');
+                });
+
+                //buyers
+                Route::get('/buyers/list', '\App\Http\Controllers\Web\Billing\BuyerController@list')->name('buyers.list');
+                Route::resource('/buyers', 'BuyerController')->except('delete', 'edit');
+
+
+                Route::get('/notifications', 'NotificationController@index')->name('notification.index');
+                Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
+
+                Route::get('/reports/{model7}/export', 'ReportsController@export')->name('reports.vendors.export');
+                Route::get('/reports/{model8}/export', 'ReportsController@export')->name('reports.filials.export');
+
+            });
+
+        });
+
+        /* Panel (Employee tools)*/
+        Route::group(['namespace' => 'Panel'], function () {
+
+            Route::name('panel.')->prefix('panel')->group(function () {
+
+
+                //index page
+                //Route::get('/', 'IndexController@index')->name('index');
+
+                Route::get('/', function(){
+
+                    $user = \Illuminate\Support\Facades\Auth::user();
+                    if ($user->hasRole('admin'))
+                        return redirect(localeRoute('panel.employees.index'));
+                    elseif ($user->hasRole('kyc'))
+                        return redirect(localeRoute('panel.buyers.index'));
+                    elseif ($user->hasRole('sales'))
+                        return redirect(localeRoute('panel.partners.index'));
+                    elseif ($user->hasRole('finance'))
+                        return redirect(localeRoute('panel.finances.index'));
+                    elseif ($user->hasRole('call-center'))
+                        return redirect(localeRoute('tickets.index'));
+                })->name('index');
+
+                //news
+                Route::any('/news/list', 'NewsController@list')->name('news.list');
+                Route::resource('/news', 'NewsController');
+
+                Route::any('/payments/list', 'PaymentController@list')->name('payments.list');
+                Route::resource('/payments', 'PaymentController');
+
+                //slides
+                Route::resource('/slides', 'SlidesController')->except('index', 'show', 'create');
+                Route::name('slides.')->prefix('slides')->group(function () {
+                    Route::any('/list', 'SlidesController@list')->name('list');
+                    Route::any('/{id}', 'SlidesController@index')->name('index');
+                    Route::any('/create/{id}', 'SlidesController@create')->name('create');
+                });
+
+                //faq
+                Route::any('/faq/list', 'FaqController@list')->name('faq.list');
+                Route::resource('/faq', 'FaqController');
+
+                //discounts
+                Route::any('/discounts/list', 'DiscountController@list')->name('discounts.list');
+                Route::resource('/discounts', 'DiscountController');
+
+                //employees
+                Route::any('/employees/list', 'EmployeeController@list')->name('employees.list');
+                Route::resource('/employees', 'EmployeeController');
+
+                //buyers
+                Route::get('/buyers/list', '\App\Http\Controllers\Web\Panel\BuyerController@list')->name('buyers.list');
+                Route::resource('/buyers', 'BuyerController');
+
+                //partners
+                Route::get('/partners/list', 'PartnerController@list')->name('partners.list');
+                Route::get('/partners/sallers', 'PartnerController@sallers')->name('partners.sallers');
+                Route::get('/partners/sallers/create', 'PartnerController@sallersCreate')->name('partners.sallers.create');
+                Route::resource('/partners', 'PartnerController');
+
+
+                //payments
+                Route::any('/payments/list', 'PaymentController@list')->name('payments.list');
+                Route::resource('/payments', 'PaymentController');
+
+                //contracts
+                Route::any('/contracts/list', 'ContractController@list')->name('contracts.list');
+                Route::resource('/contracts', 'ContractController');
+
+                //contracts
+                Route::any('/finance/list', 'FinanceController@list')->name('finances.list');
+                Route::any('/finance/order/{order}', 'FinanceController@order')->name('finances.order');
+                Route::resource('/finances', 'FinanceController');
+
+                //call center
+                Route::resource('/callcenter', 'CallCenterController');
+
+                //catalog
+                Route::name('catalog.')->prefix('catalog')->group(function () {
+                    Route::get('/', 'CatalogCategoryController@index')->name('index');
+                    Route::resource('/categories', 'CatalogCategoryController')->except('show');
+                    Route::get('/categories/list', '\App\Http\Controllers\Web\Panel\CatalogCategoryController@list')->name('categories.list');
+
+                    Route::resource('/fields', 'CatalogProductFieldController')->except('show');
+                    Route::name('fields.')->prefix('fields')->group(function () {
+                        Route::get('/list', '\App\Http\Controllers\Web\Panel\CatalogProductFieldController@list')->name('list');
+                    });
+                });
+
+                Route::get('/notifications', 'NotificationController@index')->name('notification.index');
+                Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
+
+                //pay-systems
+                Route::any('/pay-system/list', 'PaySystemController@list')->name('pay-system.list');
+                Route::resource('/pay-system', 'PaySystemController');
+
+                // отчеты
+                Route::get('/reports', 'ReportsController@index')->name('reports.index');
+                Route::get('/reports/{model}/export', 'ReportsController@export')->name('reports.orders.export');
+                Route::get('/reports/{model2}/export', 'ReportsController@export')->name('reports.payments.export');
+                Route::get('/reports/{model3}/export', 'ReportsController@export')->name('reports.history.export');
+                Route::get('/reports/{model4}/export', 'ReportsController@export')->name('reports.verified.export');
+                Route::get('/reports/{model5}/export', 'ReportsController@export')->name('reports.contracts.export');
+                Route::get('/reports/{model6}/export', 'ReportsController@export')->name('reports.delays.export');
+
+
+                Route::any('/buyer/rescoring', 'BuyerController@rescoring')->name('buyer.rescoring');
+                Route::any('/buyer/report', 'BuyerController@report')->name('buyer.report');
+
+                Route::get('/sallers/list', 'SallerController@list')->name('sallers.list');
+                Route::resource('/sallers', 'SallerController');
+
+            });
+
+        });
+
+
+        Route::get('pay',function(){
+
+            $pc = new PaymentController();
+
+            if(!$payment_data = PaymentsData::find(1)){
+                $payment_data = new PaymentsData();
+                $payment_data->id = 1;
+                $payment_data->quantity = 5;
+                $payment_data->last_id = $pc->getMinID();
+                $payment_data->save();
+            }
+
+            $params = [
+                'last_id' => $payment_data->last_id,
+                'quantity' => $payment_data->quantity,
+            ];
+
+            $scheduleList = PaymentHelper::getScheduleList($params);
+
+            if(count($scheduleList)==0){
+                $params['last_id'] = $pc->getMinID();
+                $scheduleList = PaymentHelper::getScheduleList($params);
+            }
+
+            foreach ($scheduleList as  $payment){
+
+            }
+
+            Log::channel('report')->info('autopayment: from ' . $params['last_id'] . ' to: ' . $payment->id);
+
+            $payment_data->last_id = $payment->id + 1;
+            $payment_data->save();
+
+            dd($scheduleList);
+
+        });
+
+
+
+
+
+    });
+
+
+    Route::get('tst',function (){
+
+
+        $options = [
+            'type' => PushHelper::TYPE_CONTRACT,
+            'title' => 'Предстоящая оплата',
+            'text' => null,
+        ];
+        $options['text'] = "Уведомление о предстоящей оплате договора №111 на сумму 1250000 сум через 3 дня  !";
+
+
+        $options['user_id'] = 215415;
+        $options['system'] = 'android';
+        $options['id'] = 13386;
+
+        dd(PushHelper::send($options));
+
+        /* $roy = \App\Models\RoyxatCredits::get();
+
+        echo 'start';
+
+        foreach ($roy as $item){
+
+            $response = json_decode($item->data,true);
+
+            if($response!=500 && isset($response[0]['status_id']) && $response[0]['status_id'] ==4 ){
+                $item->status = 0;
+                $item->save();
+            }elseif($response==500){
+                $item->status = 1;
+                $item->save();
+            }
+
+        }
+
+        echo 'end'; */
+    });
+
+
+
+});
+
+
+

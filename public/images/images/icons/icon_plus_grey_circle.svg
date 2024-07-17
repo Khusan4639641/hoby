@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+    <defs>
+        <style>.cls-1{opacity:0.3;}.cls-2{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:4px;}</style>
+    </defs>
+    <title>icon_plus_grey_circle</title>
+    <g id="Слой_2" data-name="Слой 2">
+        <g id="Work">
+            <g class="cls-1">
+                <path d="M30,4A26,26,0,1,1,4,30,26,26,0,0,1,30,4m0-4A30,30,0,1,0,60,30,30,30,0,0,0,30,0Z"/>
+            </g>
+            <g class="cls-1">
+                <line class="cls-2" x1="30" y1="13.98" x2="30" y2="46.02"/>
+                <line class="cls-2" x1="46.02" y1="30" x2="13.98" y2="30"/>
+            </g>
+        </g>
+    </g>
+</svg>

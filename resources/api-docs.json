@@ -1,0 +1,104 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "REST API test Documentation",
+        "description": "",
+        "contact": {
+            "email": "info@test.xyz"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://test.uz/api/v1",
+            "description": "REST API test Service"
+        }
+    ],
+    "paths": {
+        "/login/auth": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Authorization user by phone or id and password",
+                "description": "Return token",
+                "operationId": "auth",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "Phone",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "SMS code",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "partner_id",
+                        "in": "query",
+                        "description": "Partner ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authorization",
+            "description": "Authorization buyer, partner and employeer. For buyer first use method send-sms-code after receive SMS use method auth. For employeer use phone and password in method auth. For partner use partner_id and password"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "api_token_security": {
+                "type": "apiKey",
+                "description": "Authentication with api_token",
+                "name": "api_token",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
